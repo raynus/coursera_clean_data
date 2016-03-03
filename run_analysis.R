@@ -31,10 +31,12 @@ col_sd_mean<-c(grep("std()",names(total_data)),grep("mean()",names(total_data)))
 #This is a subset for sd and meanAt this 
 sub_col_sd_mean<-total_data[,col_sd_mean]
 
+
+#Last step is to create a mean for each subject and activity
 library(reshape2)
-#Generate for each subject
-each_subj<-aggregate(.~subject,subset(total_data,select=-c(activity)),FUN=mean)
-write.csv(each_subj,"each_subj.csv")
-#Generate for each activity
-each_activitiy<-aggregate(.~activity,subset(total_data,select=-c(subject)),FUN=mean)
-write.csv(each_activitiy,"each_activity.csv")
+library(reshape)
+tidy_data<-melt(total_data,id.vars = c("subject","activity"))
+tidy_data<-cast(tidy_data,subject+activity~variable,mean)
+write.table(tidy_data,"tidy_data.txt",row.name=FALSE)
+
+
