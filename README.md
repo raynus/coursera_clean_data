@@ -8,5 +8,5 @@
 6. Next step is to recode activity variable from a number in to something that has its meaning. Therefore, activity was recoded to "walking","walking_upstairs","walking_downstairs","sitting","standing","laying" as stated in activity_labels.txt file.
 7. At this stage, we can create a subset data frame that extract standard deviation (std()) and average (mean()) column from total_data using slicing and "grep" command. The output was stored in "sub_col_sd_mean" variable.
 8. The two last assignment is to create a "tidy" database, average value for each parameter for each subject and activity.
-9. We load "reshape2" library and use aggregate function for this, results were saved to each_subk and each_activity variable.
-10. Both variable were saved to "each_subj.csv" and "each_activity.csv"
+9. We use melt and set "subject" and "activity" as id variable, and cast it with "cast" function again. 
+10. Tidy data was saved as tidy_data.txt
